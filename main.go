@@ -14,5 +14,5 @@ func main() {
 	fs := http.FileServer(http.Dir("."))
 	http.Handle("/", fs)
 	log.Printf("Listening on %s...\n", port)
-	http.ListenAndServe(port, nil)
+	log.Fatal(http.ListenAndServe(port, nil))
 }
