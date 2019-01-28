@@ -1,5 +1,6 @@
 #!/bin/sh
 mkdir -p build
+rm -f build/*
 
 for o in windows linux darwin freebsd dragonfly netbsd openbsd plan9 solaris
 do
