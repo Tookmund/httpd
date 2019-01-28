@@ -12,6 +12,9 @@ do
 done
 cd build
 
+# Windows needs exe file extension
+rename -v 's/$/.exe/g' httpd-windows-*
+
 if [ ! -z $1 ]
 then
 	echo "checksumming..."
