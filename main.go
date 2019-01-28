@@ -13,7 +13,8 @@ func main() {
 	}
 	fs := http.FileServer(http.Dir("."))
 	http.HandleFunc("/", func(rw http.ResponseWriter, req *http.Request) {
-		log.Printf("%s %s %s\n",req.Method, req.URL, req.Proto)
+		log.Printf("%s %s %s %s\n",req.RemoteAddr, req.Method,
+			req.URL, req.Proto)
 		fs.ServeHTTP(rw, req)
 	})
 	ip, _ := externalIP()
