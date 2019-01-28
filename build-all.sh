@@ -9,3 +9,12 @@ do
 		GOOS="$o" GOARCH="$a" go build -o "build/httpd-$o-$a"
 	done
 done
+cd build
+
+if [ ! -z $1 ]
+then
+	echo "checksumming..."
+	sha256sum * > SHA256SUMS
+	echo "signing..."
+	gpg -b SHA256SUMS
+fi
