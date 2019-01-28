@@ -22,5 +22,13 @@ func main() {
 		log.Printf("External IP: %s\n", ip)
 	}
 	log.Printf("Listening on %s...\n", addr)
-	log.Fatal(http.ListenAndServe(addr, nil))
+
+	_, key := os.Stat("server.key")
+	_, crt := os.Stat("server.crt")
+	if key == nil && crt == nil {
+		log.Println("TLS Enabled")
+		log.Fatal(http.ListenAndServeTLS(addr, "server.crt", "server.key", nil))
+	} else {
+		log.Fatal(http.ListenAndServe(addr, nil))
+	}
 }
