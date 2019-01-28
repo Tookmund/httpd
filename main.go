@@ -16,6 +16,10 @@ func main() {
 		log.Printf("%s %s %s\n",req.Method, req.URL, req.Proto)
 		fs.ServeHTTP(rw, req)
 	})
+	ip, _ := externalIP()
+	if ip != "" {
+		log.Printf("External IP: %s\n", ip)
+	}
 	log.Printf("Listening on %s...\n", addr)
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
